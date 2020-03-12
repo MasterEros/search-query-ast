@@ -1,8 +1,10 @@
 // const value = "some   other  value";
+// const words = normalizeString(value).split(" ");
+
 const value = "   some other  value";
 
 const length_value = value.length - 1;
-const words = normalizeString(value).split(" ");
+const words = value.split(" ");
 
 const map = [];
 var counter = 0,
@@ -12,14 +14,13 @@ var counter = 0,
 for (var i = 0; i < value.length; i++) {
 	counter = value[i] === " " ? (counter += 1) : 0;
 
-	if (counter !== 0 && index === null) {
-		index = i;
-		index;
-	}
-
-	if (counter != 0) {
-		map.push(counter);
-	}
+	// if (counter !== 0 && index === null) {
+	// 	index = i;
+	// 	i;
+	// } else if (counter === 0 && index !== null) {
+	// 	index = null;
+	// 	i;
+	// }
 
 	counter;
 }
