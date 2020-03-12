@@ -7,6 +7,7 @@ import {
 	buildPositionRestorer,
 	normalizeTokens
 } from "../src";
+
 function makeTokens(definitions) {
 	return definitions.map(([type, value, position]) => ({
 		type,
@@ -30,16 +31,28 @@ describe("buildNormalizationMap", () => {
 	it("Should build normalization map", () => {
 		const result = buildNormalizationMap("some   other  value");
 		const expected = [
-			{ index: 4, length: 3 },
-			{ index: 12, length: 2 }
+			{
+				index: 4,
+				length: 3
+			},
+			{
+				index: 12,
+				length: 2
+			}
 		];
 		expect(result).toEqual(expected);
 	});
 	it("Should build normalization map 2", () => {
 		const result = buildNormalizationMap("   some other  value");
 		const expected = [
-			{ index: 0, length: 3 },
-			{ index: 13, length: 2 }
+			{
+				index: 0,
+				length: 3
+			},
+			{
+				index: 13,
+				length: 2
+			}
 		];
 		expect(result).toEqual(expected);
 	});
@@ -48,17 +61,13 @@ describe("recoverPosition", () => {
 	it("Should recover position", () => {
 		const map = buildNormalizationMap("some   other  value");
 		const restorer = buildPositionRestorer(map);
-		// @ts-ignore
 		expect(restorer(11)).toBe(14);
-		// @ts-ignore
 		expect(restorer(7)).toBe(9);
 	});
 	it("Should recover position 2", () => {
 		const map = buildNormalizationMap(" some other   value");
 		const restorer = buildPositionRestorer(map);
-		// @ts-ignore
 		expect(restorer(0)).toBe(1);
-		// @ts-ignore
 		expect(restorer(13)).toBe(16);
 	});
 });
