@@ -1,4 +1,20 @@
 // const value = "some   other  value";
+// const value = "   some other  value";
+
+const value = "some   other  value";
+// const value = "some other value";
+const varNormalizeString = normalizeString(value);
+const varBuildNormalizationMap = buildNormalizationMap(value);
+
+const map = [];
+
+varBuildNormalizationMap;
+map;
+
+// expect(restorer(11)).toBe(14);
+// expect(restorer(7)).toBe(9);
+
+// Позиция + восстановление пробелов 
 
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
@@ -13,7 +29,7 @@ export function buildNormalizationMap(value) {
 					if (length > 1) {
 						map.push({
 							index: i,
-							length
+							length: length
 						});
 					}
 					i = j;
@@ -24,7 +40,5 @@ export function buildNormalizationMap(value) {
 	}
 	return map;
 }
-export function buildPositionRestorer(map) {
-
-}
+export function buildPositionRestorer(map) {}
 export function normalizeTokens(tokens) {}
