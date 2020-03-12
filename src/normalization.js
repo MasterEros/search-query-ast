@@ -13,7 +13,7 @@ export function buildNormalizationMap(value) {
 					if (length > 1) {
 						map.push({
 							index: i,
-							length: length
+							length
 						});
 					}
 					i = j;
@@ -24,5 +24,7 @@ export function buildNormalizationMap(value) {
 	}
 	return map;
 }
-export function buildPositionRestorer(map) {}
+export function buildPositionRestorer(map) {
+
+}
 export function normalizeTokens(tokens) {}
