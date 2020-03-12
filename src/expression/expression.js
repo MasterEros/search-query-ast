@@ -1,3 +1,1 @@
-export function buildExpression (tokens) {
-
-}
+export function buildExpression(tokens) {}
