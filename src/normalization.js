@@ -1,20 +1,28 @@
+// @ts-nocheck
 // const value = "some   other  value";
 // const value = "   some other  value";
 
 const value = "some   other  value";
-// const value = "some other value";
-const varNormalizeString = normalizeString(value);
-const varBuildNormalizationMap = buildNormalizationMap(value);
+const map = buildNormalizationMap(value);
+const restorer = 11;
+const map_restorer = buildPositionRestorer(map);
+const result = map_restorer(11);
+result;
 
-const map = [];
 
-varBuildNormalizationMap;
+
+
+for (let i = 0; i < map.length; i++) {
+	if (map[i].index + map[i].length < restorer) {
+		i;
+	}
+}
 map;
 
 // expect(restorer(11)).toBe(14);
 // expect(restorer(7)).toBe(9);
 
-// Позиция + восстановление пробелов 
+// Позиция + восстановление пробелов
 
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
@@ -40,5 +48,9 @@ export function buildNormalizationMap(value) {
 	}
 	return map;
 }
-export function buildPositionRestorer(map) {}
+export function buildPositionRestorer(map) {
+	return function(value) {
+		return map;
+	};
+}
 export function normalizeTokens(tokens) {}
