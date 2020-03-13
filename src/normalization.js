@@ -2,25 +2,19 @@
 // const value = "some   other  value";
 // const value = "   some other  value";
 
-const value = "some   other  value";
+const value = " some other   value";
 const map = buildNormalizationMap(value);
-const restorer = 11;
-const map_restorer = buildPositionRestorer(map);
-const result = map_restorer(11);
-result;
-
-
-
+var restorer = 0;
 
 for (let i = 0; i < map.length; i++) {
-	if (map[i].index + map[i].length < restorer) {
-		i;
-	}
+	var map_count = map[i].index + map[i].length;
+	map_count;
 }
+restorer;
 map;
 
-// expect(restorer(11)).toBe(14);
-// expect(restorer(7)).toBe(9);
+// expect(restorer(0)).toBe(1);
+// expect(restorer(13)).toBe(16);
 
 // Позиция + восстановление пробелов
 
@@ -34,7 +28,7 @@ export function buildNormalizationMap(value) {
 			for (let j = i; j < value.length; j++) {
 				if (value[j] !== " ") {
 					var length = j - i;
-					if (length > 1) {
+					if (length > 1 || i === 0) {
 						map.push({
 							index: i,
 							length: length
@@ -54,3 +48,8 @@ export function buildPositionRestorer(map) {
 	};
 }
 export function normalizeTokens(tokens) {}
+
+// const map = buildNormalizationMap(value);
+// const map_restorer = buildPositionRestorer(map);
+// const result = map_restorer(11);
+// result;
