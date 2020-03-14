@@ -14,37 +14,35 @@
 
 // Позиция + восстановление пробелов
 
-const value = " some other   value  ";
+// const value = "some   other  value";
+// const value = " some other   value ";
+const value = "   some  some     value  some ";
 const map = buildNormalizationMap(value);
-map;
 
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
 }
 export function buildNormalizationMap(value) {
 	const map = [];
-	// const words = normalizeString(value).split(" ");
 	const words = value.split(" ");
 	words;
+
+	var count = 0;
 	for (let index in words) {
-		const word = words[index];
-		const word_length = words[index].length;
-		// const word_begin_index = value.indexOf(word);
-		// const word_end_index = word_begin_index + word_length;
+		const numindex = Number(index);
+		const word_length = words[numindex].length;
 
-		if (word_length === 0 && words[index] !== words[index - 1]) {
+		if (word_length === 0 && words[numindex] !== words[numindex + 1]) {
+			// count;
+			// count = index - count + 1;
+			// count;
+		} else if (word_length === 0 && words[numindex] !== words[numindex - 1]) {
 			index;
-		} else if (word_length === 0 && words[index] === words[index - 1]) {
-			index;
+			// count = index;
 		}
-
-		word;
-		word_length;
-		// word_begin_index;
-		// word_end_index;
-		// word;
 	}
 
+	map;
 	return map;
 }
 export function buildPositionRestorer(map) {
