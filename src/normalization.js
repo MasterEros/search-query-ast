@@ -23,13 +23,26 @@ export function normalizeString(value) {
 }
 export function buildNormalizationMap(value) {
 	const map = [];
-	const words = normalizeString(value).split(" ");
+	// const words = normalizeString(value).split(" ");
+	const words = value.split(" ");
 	words;
-	for (let word of words) {
-		const word_index = value.indexOf(word);
+	for (let index in words) {
+		const word = words[index];
+		const word_length = words[index].length;
+		// const word_begin_index = value.indexOf(word);
+		// const word_end_index = word_begin_index + word_length;
 
-		word_index;
+		if (word_length === 0 && words[index] !== words[index - 1]) {
+			index;
+		} else if (word_length === 0 && words[index] === words[index - 1]) {
+			index;
+		}
+
 		word;
+		word_length;
+		// word_begin_index;
+		// word_end_index;
+		// word;
 	}
 
 	return map;
