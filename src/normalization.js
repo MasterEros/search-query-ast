@@ -1,10 +1,13 @@
 // @ts-nocheck
 
+// const map = buildNormalizationMap("some other value");
+// const map = buildNormalizationMap("some   other  value"); 11 -> 14   7 -> 9
+
+// const map = buildNormalizationMap("some other value");
 const map = buildNormalizationMap(" some other   value");
 const restorer = buildPositionRestorer(map);
 map;
-
-const result = restorer(13); // 0 - 1, 13 - 16
+const result = restorer(13); // 0 -> 1   13 -> 16
 
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
