@@ -5,7 +5,7 @@ export function normalizeString(value) {
 }
 export function buildNormalizationMap(value) {
 	const map = [];
-	var count = 0;
+	let count = 0;
 	for (var i = 0; i <= value.length; i++) {
 		if (value[i] === " ") {
 			count++;
@@ -24,7 +24,7 @@ export function buildNormalizationMap(value) {
 }
 export function buildPositionRestorer(map) {
 	return function(value) {
-		var count = 0;
+		let count = 0;
 		map.forEach((item, index) => {
 			if (value >= item.index && item.index === 0) {
 				count += item.length;
@@ -35,14 +35,6 @@ export function buildPositionRestorer(map) {
 		return value + count;
 	};
 }
-export function normalizeTokens(tokens) {}
-
-// map.forEach((item, index) => {
-// 	if (value >= item.index && item.length === 1 && index === 0) {
-// 		count += item.length;
-// 		count;
-// 	} else if (value >= item.index) {
-// 		count += item.length - 1;
-// 		count;
-// 	}
-// });
+export function normalizeTokens(tokens) {
+	return tokens;
+}
