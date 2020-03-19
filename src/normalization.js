@@ -1,13 +1,5 @@
 // @ts-nocheck
 
-// const map = buildNormalizationMap("some other value");
-const map = buildNormalizationMap("  some   other  value"); // 11 -> 14   7 -> 9
-// const map = buildNormalizationMap(" some other   value"); // 0 -> 1   13 -> 16
-const restorer = buildPositionRestorer(map);
-const result = restorer(11);
-map;
-result;
-
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
 }
@@ -34,13 +26,10 @@ export function buildPositionRestorer(map) {
 	return function(value) {
 		var count = 0;
 		map.forEach((item, index) => {
-			const position = item.index - item.length;
-			if (value > item.index && item.index === 0) {
+			if (value >= item.index && item.index === 0) {
 				count += item.length;
-				count;
-			} else if (value > item.index) {
+			} else if (value >= item.index - count) {
 				count += item.length - 1;
-				count;
 			}
 		});
 		return value + count;
