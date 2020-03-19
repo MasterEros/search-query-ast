@@ -3,22 +3,21 @@
 // "some value OR other value" [{"position": 0, "type": "item", "value": "some value"}, {"position": 11, "type": "binary_operator", "value": "OR"}, {"position": 14, "type": "item", "value": "other value"}]
 
 // const data = tokenize("foo OR baz AND bar");
-const data = tokenize("some value OR other value");
+const data = tokenize("some   value OR other value");
 
 data;
 
 export function tokenize(str) {
 	const map = [];
 
-	const words = str.split(/(\w+)/);
+	const words = str.split(/(\w+|\s )/);
 	words;
 
 	words.forEach((item, index) => {
-		if (
-			(item !== " " && words[index + 1] !== " ") ||
-			(item === " " && words[index + 1] !== " ")
-		) {
-			item = item.trim();
+		if (item !== " " && words[index + 1] !== " ") {
+			item;
+		} else {
+			// item = item.trim();
 		}
 
 		console.log(item);
