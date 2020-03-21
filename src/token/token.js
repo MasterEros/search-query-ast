@@ -3,63 +3,78 @@
 // "some value OR other value" [{"position": 0, "type": "item", "value": "some value"}, {"position": 11, "type": "binary_operator", "value": "OR"}, {"position": 14, "type": "item", "value": "other value"}]
 
 // const data = tokenize("foo OR baz AND bar");
-const data = tokenize("some   value OR other value");
-
+const data = tokenize("some value OR other value");
 data;
 
 export function tokenize(str) {
-	const map = [];
+	const tokens = [];
+	let phrase = "";
 
-	const words = str.split(/(\w+|\s )/);
-	words;
-
-	words.forEach((item, index) => {
-		if (item !== " " && words[index + 1] !== " ") {
-			item;
-		} else {
-			// item = item.trim();
-		}
-
-		console.log(item);
-
-		if (item === "OR" || item === "AND") {
-			map.push({
-				position: str.indexOf(item),
-				type: "binary_operator",
-				value: item
-			});
-		} else if (item === "(") {
-			map.push({
-				position: str.indexOf(item),
+	for (let i = 0; i <= str.length; i++) {
+		if (str[i] === "(") {
+			tokens.push({
+				position: i,
 				type: "left_bracket",
 				value: "("
 			});
-		} else if (item === ")") {
-			map.push({
-				position: str.indexOf(item),
+		} else if (str[i] === ")") {
+			tokens.push({
+				position: i,
 				type: "right_bracket",
 				value: ")"
 			});
-		} else if (item === " ") {
-			map.push({
-				position: str.indexOf(item),
-				type: "space",
-				value: " "
+		} else if (str[i] + str[i + 1] == "OR") {
+			tokens.push({
+				position: i,
+				type: "binary_operator",
+				value: "OR"
 			});
+			i += 1;
+		} else if (str[i] + str[i + 1] + str[i + 2] == "AND") {
+			tokens.push({
+				position: i,
+				type: "binary_operator",
+				value: "AND"
+			});
+			i += 2;
+		} else if (str[i] === " ") {
+			if (i < str.length && str[i + 1] === " ") {
+				tokens.push({
+					position: i,
+					type: "space",
+					value: " "
+				});
+			}
 		} else {
-			index;
-			item;
-		}
-	});
+			let j = i;
 
-	return map;
+			do {
+				phrase += str[j];
+				j++;
+			} while (str[j + 1] !== " " && j < str.length);
+
+			// while (str[i + 1] != " ") {
+			// 	phrase += str[i];
+			// 	i += 1;
+			// }
+			i += j - i;
+		}
+	}
+
+	phrase;
+	return tokens;
 }
 
 //----------------------------------------------------------------
 
-// const words = str.split(/\ |\(|\)/);
-// words;
+// const words = str.split(/(\w+|\s )/);
 // words.forEach((item, index) => {
+// 	if (item !== " " && words[index + 1] !== " ") {
+// 		item;
+// 	} else {
+// 		// item = item.trim();
+// 	}
+// 	console.log(item);
 // 	if (item === "OR" || item === "AND") {
 // 		map.push({
 // 			position: str.indexOf(item),
@@ -78,7 +93,7 @@ export function tokenize(str) {
 // 			type: "right_bracket",
 // 			value: ")"
 // 		});
-// 	} else if (item === "") {
+// 	} else if (item === " ") {
 // 		map.push({
 // 			position: str.indexOf(item),
 // 			type: "space",
@@ -87,53 +102,5 @@ export function tokenize(str) {
 // 	} else {
 // 		index;
 // 		item;
-// 	}
-// });
-
-//----------------------------------------------------------------
-
-// 	if (
-// 		item &&
-// 		item !== " " &&
-// 		item !== "(" &&
-// 		item !== ")" &&
-// 		item !== "OR" &&
-// 		item !== "AND" &&
-// 		words[index + 1] &&
-// 		words[index + 1] !== " " &&
-// 		words[index + 1] !== "(" &&
-// 		words[index + 1] !== ")" &&
-// 		words[index + 1] !== "AND" &&
-// 		words[index + 1] !== "OR"
-// 	) {
-// 		map.push({
-// 			position: str.indexOf(item),
-// 			type: "item",
-// 			value: item + " " + words[index + 1]
-// 		});
-// 	} else if (item === "OR" || item === "AND") {
-// 		map.push({
-// 			position: str.indexOf(item),
-// 			type: "binary_operator",
-// 			value: item
-// 		});
-// 	} else if (item === "(") {
-// 		map.push({
-// 			position: str.indexOf(item),
-// 			type: "left_bracket",
-// 			value: item
-// 		});
-// 	} else if (item === ")") {
-// 		map.push({
-// 			position: str.indexOf(item),
-// 			type: "right_bracket",
-// 			value: item
-// 		});
-// 	} else if (item === " ") {
-// 		map.push({
-// 			position: str.indexOf(item),
-// 			type: "space",
-// 			value: item
-// 		});
 // 	}
 // });
