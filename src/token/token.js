@@ -3,70 +3,89 @@
 // "some value OR other value" [{"position": 0, "type": "item", "value": "some value"}, {"position": 11, "type": "binary_operator", "value": "OR"}, {"position": 14, "type": "item", "value": "other value"}]
 
 // const data = tokenize("foo OR baz AND bar");
-const data = tokenize("some value OR other value");
-data;
+const data = tokenize("(some value) OR other value");
+console.log(data);
 
 export function tokenize(str) {
 	const tokens = [];
+
+	const words = str.split(/ /);
+	words;
+
 	let phrase = "";
 
-	for (let i = 0; i <= str.length; i++) {
-		if (str[i] === "(") {
+	words.forEach((word, i) => {
+		if (word === "OR" || word === "AND") {
 			tokens.push({
-				position: i,
-				type: "left_bracket",
-				value: "("
-			});
-		} else if (str[i] === ")") {
-			tokens.push({
-				position: i,
-				type: "right_bracket",
-				value: ")"
-			});
-		} else if (str[i] + str[i + 1] == "OR") {
-			tokens.push({
-				position: i,
+				position: words.indexOf(word),
 				type: "binary_operator",
-				value: "OR"
+				value: word
 			});
-			i += 1;
-		} else if (str[i] + str[i + 1] + str[i + 2] == "AND") {
+		} else if (word === "") {
 			tokens.push({
-				position: i,
-				type: "binary_operator",
-				value: "AND"
+				position: words.indexOf(word),
+				type: "space",
+				value: " "
 			});
-			i += 2;
-		} else if (str[i] === " ") {
-			if (i < str.length && str[i + 1] === " ") {
-				tokens.push({
-					position: i,
-					type: "space",
-					value: " "
-				});
-			}
 		} else {
-			let j = i;
-
-			do {
-				phrase += str[j];
-				j++;
-			} while (str[j + 1] !== " " && j < str.length);
-
-			// while (str[i + 1] != " ") {
-			// 	phrase += str[i];
-			// 	i += 1;
-			// }
-			i += j - i;
+			if (words[i + 1] === "OR" || words[i + 1] === "AND") {
+				phrase += word;
+				phrase;
+				phrase = "";
+			} else {
+				phrase += word + " ";
+			}
 		}
-	}
 
-	phrase;
+		// for (let i = 0; i < word.length; i++){
+		// 	const simbol = word[i];
+		// 	console.log(simbol);
+		// }
+
+		word;
+	});
+
 	return tokens;
 }
 
 //----------------------------------------------------------------
-
+// for (let i = 0; i <= str.length; i++) {
+// 	if (str[i] === "(") {
+// 		tokens.push({
+// 			position: i,
+// 			type: "left_bracket",
+// 			value: "("
+// 		});
+// 	} else if (str[i] === ")") {
+// 		tokens.push({
+// 			position: i,
+// 			type: "right_bracket",
+// 			value: ")"
+// 		});
+// 	} else if (str[i] + str[i + 1] == "OR") {
+// 		tokens.push({
+// 			position: i,
+// 			type: "binary_operator",
+// 			value: "OR"
+// 		});
+// 		i += 1;
+// 	} else if (str[i] + str[i + 1] + str[i + 2] == "AND") {
+// 		tokens.push({
+// 			position: i,
+// 			type: "binary_operator",
+// 			value: "AND"
+// 		});
+// 		i += 2;
+// 	} else if (str[i] === " ") {
+// 		if (i < str.length && str[i + 1] === " ") {
+// 			tokens.push({
+// 				position: i,
+// 				type: "space",
+// 				value: " "
+// 			});
+// 		}
+// 	}
+// }
 // const words = str.split(/(\w+|\s )/);
 // words.forEach((item, index) => {
 // 	if (item !== " " && words[index + 1] !== " ") {
