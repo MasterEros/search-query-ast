@@ -1,5 +1,11 @@
 // @ts-nocheck
 
+const map = buildNormalizationMap("some   other  value");
+const restorer = buildPositionRestorer(map);
+const result = restorer(11);
+
+result;
+
 export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
 }
@@ -15,24 +21,31 @@ export function buildNormalizationMap(value) {
 				(count === 1 && i - 1 === value.length - 1) ||
 				count > 1
 			) {
-				map.push({ index: i - count, length: count });
+				map.push({
+					index: i - count,
+					length: count
+				});
 			}
 			count = 0;
 		}
 	}
 	return map;
+
+	// Возможно можно заменить на reduce + map
 }
 export function buildPositionRestorer(map) {
 	return function(value) {
-		let count = 0;
-		map.forEach((item, index) => {
-			if (value >= item.index && item.index === 0) {
-				count += item.length;
-			} else if (value >= item.index - count) {
-				count += item.length - 1;
-			}
-		});
-		return value + count;
+		// let count = 0;
+		// map.forEach(item => {
+		// 	if (value >= item.index && item.index === 0) {
+		// 		count += item.length;
+		// 	} else if (value >= item.index - count) {
+		// 		count += item.length - 1;
+		// 	}
+		// });
+		// return value + count;
+
+		return map.reduce((counter, item) => {}, 0);
 	};
 }
 export function normalizeTokens(tokens) {
