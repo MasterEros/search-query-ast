@@ -2,51 +2,56 @@
 
 // "some value OR other value" [{"position": 0, "type": "item", "value": "some value"}, {"position": 11, "type": "binary_operator", "value": "OR"}, {"position": 14, "type": "item", "value": "other value"}]
 
+const data = tokenize("some value OR other value");
 // const data = tokenize("foo OR baz AND bar");
-const data = tokenize("(some value) OR other value");
 console.log(data);
 
 export function tokenize(str) {
-	const tokens = [];
-
-	const words = str.split(/ /);
+	const words = str;
 	words;
+b
+	const test = words.filter(word => word === "OR" || word === "AND");
+	test;
 
-	let phrase = "";
-
-	words.forEach((word, i) => {
-		if (word === "OR" || word === "AND") {
-			tokens.push({
-				position: words.indexOf(word),
-				type: "binary_operator",
-				value: word
-			});
-		} else if (word === "") {
-			tokens.push({
-				position: words.indexOf(word),
-				type: "space",
-				value: " "
-			});
-		} else {
-			if (words[i + 1] === "OR" || words[i + 1] === "AND") {
-				phrase += word;
-				phrase;
-				phrase = "";
-			} else {
-				phrase += word + " ";
-			}
-		}
-
-		// for (let i = 0; i < word.length; i++){
-		// 	const simbol = word[i];
-		// 	console.log(simbol);
-		// }
-
-		word;
-	});
-
-	return tokens;
+	return str;
 }
+
+//----------------------------------------------------------------
+// const words = str.split(/ /);
+// words;
+
+// let phrase = "";
+
+// words.map((word, i) => {
+// 	if (word === "OR" || word === "AND") {
+// 		tokens.push({
+// 			position: words.indexOf(word),
+// 			type: "binary_operator",
+// 			value: word
+// 		});
+// 	} else if (word === "") {
+// 		tokens.push({
+// 			position: words.indexOf(word),
+// 			type: "space",
+// 			value: " "
+// 		});
+// 	} else {
+// 		if (words[i + 1] === "OR" || words[i + 1] === "AND") {
+// 			phrase += word;
+// 			phrase;
+// 			phrase = "";
+// 		} else {
+// 			phrase += word + " ";
+// 		}
+// 	}
+
+// 	// for (let i = 0; i < word.length; i++){
+// 	// 	const simbol = word[i];
+// 	// 	console.log(simbol);
+// 	// }
+
+// 	word;
+// });
 
 //----------------------------------------------------------------
 // for (let i = 0; i <= str.length; i++) {
