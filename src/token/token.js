@@ -7,20 +7,28 @@ const data = tokenize("some value OR other value");
 console.log(data);
 
 export function tokenize(str) {
-	const words = str.split("");
-	words;
-
-	words.map(char => {
-		char;
-	});
-
-	const test = str.split(/\s* OR | AND\s*/);
-	test;
-
-	// const arr = words.map(word => word);
-	// arr;
-
-	// return str;
+	return str
+		.split(/ OR | AND /)
+		.map(value => {
+			return {
+				position: str.indexOf(value),
+				type: "item",
+				value: value
+			};
+		})
+		.concat(
+			str
+				.split(" ")
+				.filter(binary => binary === "OR" || binary === "AND")
+				.map(binary => {
+					return {
+						position: str.indexOf(binary),
+						type: "binary_operator",
+						value: binary
+					};
+				})
+		)
+		.sort((a, b) => (a.position > b.position ? 1 : -1));
 }
 
 // text.match(/[a-z'\-]+/gi);
