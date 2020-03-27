@@ -7,14 +7,23 @@ const data = tokenize("some value OR other value");
 console.log(data);
 
 export function tokenize(str) {
-	const words = str;
+	const words = str.split("");
 	words;
-b
-	const test = words.filter(word => word === "OR" || word === "AND");
+
+	words.map(char => {
+		char;
+	});
+
+	const test = str.split(/\s* OR | AND\s*/);
 	test;
 
-	return str;
+	// const arr = words.map(word => word);
+	// arr;
+
+	// return str;
 }
+
+// text.match(/[a-z'\-]+/gi);
 
 //----------------------------------------------------------------
 // const words = str.split(/ /);
