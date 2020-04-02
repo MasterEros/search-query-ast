@@ -22,8 +22,8 @@ export function buildNormalizationMap(value) {
 				const index = words
 					.filter((word, j) => i < j)
 					.reduce((counter, word) => {
-						return counter;
-					});
+						return (counter += word.length);
+					}, 0);
 
 				console.log(index);
 
