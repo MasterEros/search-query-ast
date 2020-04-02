@@ -11,24 +11,18 @@ export function buildNormalizationMap(value) {
 	return value
 		.split(/(^ +| {2,})/g)
 		.map((word, i, arr) => {
-			word;
-
-			if (word[0] === " " && word !== "") {
-				i;
-				word;
-
-				const index = arr
-					.filter((word, j) => i < j)
-					.reduce((counter, word) => {
-						return (counter += word.length);
-					}, 0);
-
-				console.log(index);
-
-				return { length: word.length };
-			}
+			return word[0] === " " && word !== ""
+				? {
+						index: arr
+							.filter((word, j) => j < i)
+							.reduce((counter, word) => {
+								return (counter += word.length);
+							}, 0),
+						length: word.length
+				  }
+				: 0;
 		})
-		.filter(word => word !== undefined);
+		.filter(result => result !== 0);
 }
 export function buildPositionRestorer(map) {
 	return function(value) {
