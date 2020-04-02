@@ -35,5 +35,5 @@ export function buildPositionRestorer(map) {
 		);
 }
 export function normalizeTokens(tokens) {
-	// return tokens;
+	return tokens;
 }

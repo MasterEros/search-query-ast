@@ -6,6 +6,7 @@ import {
 	buildPositionRestorer,
 	normalizeTokens
 } from "../src";
+
 function makeTokens(definitions) {
 	return definitions.map(([type, value, position]) => ({
 		type,
