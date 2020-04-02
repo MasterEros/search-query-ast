@@ -28,14 +28,6 @@ const SINGLE_CHAR_TOKENS = [
 ];
 const MULTI_CHAR_TOKENS = [TOKEN.UNARY_OPERATOR, TOKEN.BINARY_OPERATOR];
 
-// const tokens = [
-// 	...UNARY_OPERATORS,
-// 	...BINARY_OPERATORS,
-// 	LEFT_BRACKET,
-// 	RIGHT_BRACKET,
-// 	SPACE
-// ];
-
 const tokens = {
 	UNARY_OPERATORS,
 	BINARY_OPERATORS,
@@ -43,6 +35,12 @@ const tokens = {
 	RIGHT_BRACKET,
 	SPACE
 };
+
+const tokensis = Object.values(tokens)
+	.map(([left, right]) => left || right)
+	.filter(token => token !== undefined);
+
+tokensis;
 
 console.log(tokens);
 
@@ -60,18 +58,12 @@ export function tokenize(str) {
 		count;
 
 		Object.values(tokens)
+			.filter(token => {
+				// typeof token === "object" ? Object.values(token) : token;
+			})
 			.map(token => {
-				token;
+				// token;
 			});
-
-		// tokens
-		// 	.filter(token => word === token)
-		// 	.map((token, k) => {
-		// 		count;
-
-		// 		i;
-		// 		token;
-		// 	});
 	});
 }
 
