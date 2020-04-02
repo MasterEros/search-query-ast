@@ -41,41 +41,5 @@ export function buildPositionRestorer(map) {
 	};
 }
 export function normalizeTokens(tokens) {
-	return tokens;
+	// return tokens;
 }
-
-// const map = words.map((item, i) => {
-// 	console.log(item);
-// 	if (item !== "") {
-// 		i;
-// 		console.log(item);
-// 		return {
-// 			index: words.indexOf(item)
-// 		};
-// 	} else if (item === "" && words[i - 1] !== "" && words[i + 1] === "") {
-// 		i;
-// 		console.log(item);
-// 	} else {
-// 	}
-// });
-
-// const map = [];
-// let count = 0;
-// for (var i = 0; i <= value.length; i++) {
-// 	if (value[i] === " ") {
-// 		count++;
-// 	} else {
-// 		if (
-// 			(count === 1 && i - 1 === 0) ||
-// 			(count === 1 && i - 1 === value.length - 1) ||
-// 			count > 1
-// 		) {
-// 			map.push({
-// 				index: i - count,
-// 				length: count
-// 			});
-// 		}
-// 		count = 0;
-// 	}
-// }
-// return map;

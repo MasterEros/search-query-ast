@@ -1,3 +1,5 @@
+export * from './constants'
+
 export function tokenize(str) {
 	return str
 		.split(/ OR | AND /)
