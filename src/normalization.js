@@ -8,10 +8,8 @@ export function normalizeString(value) {
 	return value.trim().replace(/\s{2,}/g, " ");
 }
 export function buildNormalizationMap(value) {
-	const words = value.split(/(^ +| {2,})/g);
-	words;
-
-	const map = words
+	return value
+		.split(/(^ +| {2,})/g)
 		.map((word, i, arr) => {
 			word;
 
@@ -19,7 +17,7 @@ export function buildNormalizationMap(value) {
 				i;
 				word;
 
-				const index = words
+				const index = arr
 					.filter((word, j) => i < j)
 					.reduce((counter, word) => {
 						return (counter += word.length);
@@ -31,8 +29,6 @@ export function buildNormalizationMap(value) {
 			}
 		})
 		.filter(word => word !== undefined);
-
-	return map;
 }
 export function buildPositionRestorer(map) {
 	return function(value) {
