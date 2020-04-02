@@ -5,24 +5,24 @@ export function normalizeString(value) {
 }
 export function buildNormalizationMap(value) {
 	const map = [];
-	let count = 0;
-	for (var i = 0; i <= value.length; i++) {
-		if (value[i] === " ") {
-			count++;
-		} else {
-			if (
-				(count === 1 && i - 1 === 0) ||
-				(count === 1 && i - 1 === value.length - 1) ||
-				count > 1
-			) {
-				map.push({
-					index: i - count,
-					length: count
-				});
-			}
-			count = 0;
-		}
-	}
+	// let count = 0;
+	// for (var i = 0; i <= value.length; i++) {
+	// 	if (value[i] === " ") {
+	// 		count++;
+	// 	} else {
+	// 		if (
+	// 			(count === 1 && i - 1 === 0) ||
+	// 			(count === 1 && i - 1 === value.length - 1) ||
+	// 			count > 1
+	// 		) {
+	// 			map.push({
+	// 				index: i - count,
+	// 				length: count
+	// 			});
+	// 		}
+	// 		count = 0;
+	// 	}
+	// }
 	return map;
 }
 export function buildPositionRestorer(map) {
@@ -43,3 +43,22 @@ export function buildPositionRestorer(map) {
 export function normalizeTokens(tokens) {
 	// return tokens;
 }
+
+// let count = 0;
+// for (var i = 0; i <= value.length; i++) {
+// 	if (value[i] === " ") {
+// 		count++;
+// 	} else {
+// 		if (
+// 			(count === 1 && i - 1 === 0) ||
+// 			(count === 1 && i - 1 === value.length - 1) ||
+// 			count > 1
+// 		) {
+// 			map.push({
+// 				index: i - count,
+// 				length: count
+// 			});
+// 		}
+// 		count = 0;
+// 	}
+// }
