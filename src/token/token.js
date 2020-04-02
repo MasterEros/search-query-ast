@@ -36,10 +36,7 @@ const tokens = {
 	SPACE
 };
 
-const tokensis = Object.values(tokens)
-	.map(([left, right]) => left || right)
-	.filter(token => token !== undefined);
-
+const tokensis = Object.values(tokens).map(([left, right]) => left || right);
 tokensis;
 
 console.log(tokens);
