@@ -4,14 +4,14 @@ import {
 	normalizeString,
 	buildNormalizationMap,
 	buildPositionRestorer,
-	normalizeTokens
+	normalizeTokens,
 } from "../src";
 
 function makeTokens(definitions) {
 	return definitions.map(([type, value, position]) => ({
 		type,
 		value,
-		position
+		position,
 	}));
 }
 describe("normalizeString", () => {
@@ -31,7 +31,7 @@ describe("buildNormalizationMap", () => {
 		const result = buildNormalizationMap("some   other  value");
 		const expected = [
 			{ index: 4, length: 3 },
-			{ index: 12, length: 2 }
+			{ index: 12, length: 2 },
 		];
 		expect(result).toEqual(expected);
 	});
@@ -39,7 +39,7 @@ describe("buildNormalizationMap", () => {
 		const result = buildNormalizationMap("   some other  value");
 		const expected = [
 			{ index: 0, length: 3 },
-			{ index: 13, length: 2 }
+			{ index: 13, length: 2 },
 		];
 		expect(result).toEqual(expected);
 	});
@@ -67,7 +67,7 @@ describe("normalizeTokens", () => {
 			[TOKEN.BINARY_OPERATOR, "OR", 4],
 			[TOKEN.ITEM, "baz", 7],
 			[TOKEN.BINARY_OPERATOR, "AND", 11],
-			[TOKEN.ITEM, "bar", 15]
+			[TOKEN.ITEM, "bar", 15],
 		]);
 		expect(result).toEqual(expected);
 	});
@@ -77,7 +77,7 @@ describe("normalizeTokens", () => {
 		const expected = makeTokens([
 			[TOKEN.ITEM, "some value", 0],
 			[TOKEN.BINARY_OPERATOR, "OR", 11],
-			[TOKEN.ITEM, "other value", 14]
+			[TOKEN.ITEM, "other value", 14],
 		]);
 		expect(result).toEqual(expected);
 	});
