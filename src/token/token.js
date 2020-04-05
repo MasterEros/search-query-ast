@@ -39,33 +39,51 @@ const SINGLE_CHAR_TOKENS = [
 const MULTI_CHAR_TOKENS = [TOKEN.UNARY_OPERATOR, TOKEN.BINARY_OPERATOR];
 
 // const data = tokenize("foo choore OR giga bit AND baz liter");
-const data = tokenize("some value OR other value");
+const data = tokenize("foo OR baz AND bar");
+// const data = tokenize("some value AND other value");
 data;
 
 export function tokenize(str) {
-	const split = str.split(/(^ +|OR|AND|\(|\))/g);
+	const split = str.split(/(^ +|NOT|EXACT|OR|AND|\(|\))/g);
 	split;
+
 	return str
 		.trim()
-		.split(/(^ +|OR|AND|\(|\))/g)
+		.split(/(^ +|NOT|EXACT|OR|AND|\(|\))/g)
 		.map((word, i, arr) => {
-			const str_word = word.trim();
-			const len_word = str_word.length;
-			str_word;
-			len_word;
+			if (word !== "") {
+				word;
+				const str_word = word.trim();
+				const len_word = str_word.length;
+				str_word;
+				len_word;
 
-			if (
-				str_word === BINARY_OPERATOR.OR ||
-				str_word === BINARY_OPERATOR.AND
-			)
-				return [MULTI_CHAR_TOKENS[1], str_word];
+				const index = arr
+					.filter((word, j) => j < i)
+					.reduce((counter, word) => {
+						return (counter += word.length);
+					}, 0);
 
-			const index = arr
-				.filter((word, j) => j < i)
-				.reduce((counter, word) => {
-					return (counter += word.length);
-				}, 0);
-
-			index;
-		});
+				if (
+					str_word === BINARY_OPERATOR.OR ||
+					str_word === BINARY_OPERATOR.AND
+				)
+					return [MULTI_CHAR_TOKENS[1], str_word, index];
+				else if (
+					str_word === UNARY_OPERATOR.NOT ||
+					str_word === UNARY_OPERATOR.EXACT
+				)
+					return [MULTI_CHAR_TOKENS[0], str_word, index];
+				else if (str_word === LEFT_BRACKET)
+					return [SINGLE_CHAR_TOKENS[0], str_word, index];
+				else if (str_word === RIGHT_BRACKET)
+					return [SINGLE_CHAR_TOKENS[1], str_word, index];
+				else if (str_word === SPACE)
+					return [SINGLE_CHAR_TOKENS[2], str_word, index];
+				else {
+					return ["ITEM", str_word, index];
+				}
+			}
+		})
+		.filter((result) => result !== undefined);
 }
