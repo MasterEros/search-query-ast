@@ -35,19 +35,24 @@ const SINGLE_CHAR_TOKENS = [
 ];
 const MULTI_CHAR_TOKENS = [TOKEN.UNARY_OPERATOR, TOKEN.BINARY_OPERATOR];
 
+const data = tokenize("some value OR other value");
+data;
+
 export function tokenize(str) {
-	// 	return str.split(/(^ +| )/g).map((word, i, arr) => {
-	// 		word;
-	// 		const count = arr
-	// 			.filter((word, j) => j < i)
-	// 			.reduce((counter, word) => (counter += word.length), word.length);
-	// 		count;
-	// 		Object.values(tokens)
-	// 			.filter((token) => {
-	// 				// typeof token === "object" ? Object.values(token) : token;
-	// 			})
-	// 			.map((token) => {
-	// 				// token;
-	// 			});
-	// 	});
+	const split = str.split(/(^ +|OR)/gm);
+	split;
+	// return str.split(/(^ +| {2,})/g).map((word, i, arr) => {
+	// 	word;
+	// 	// const count = arr
+	// 	// 	.filter((word, j) => j < i)
+	// 	// 	.reduce((counter, word) => (counter += word.length), word.length);
+	// 	// count;
+	// 	// Object.values(tokens)
+	// 	// 	.filter((token) => {
+	// 	// 		// typeof token === "object" ? Object.values(token) : token;
+	// 	// 	})
+	// 	// 	.map((token) => {
+	// 	// 		// token;
+	// 	// 	});
+	// });
 }
